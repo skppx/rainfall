@@ -1,0 +1,21 @@
+ if ( atoi(argv[1]) == 423 )
+  {
+    v4[0] = strdup("/bin/sh");
+    v4[1] = 0;
+    v6 = getegid();
+    v5 = geteuid();
+    setresgid(v6, v6, v6);
+    setresuid(v5, v5, v5);
+    execv("/bin/sh", v4);
+  }
+  else
+  {
+    fwrite("No !\n", 1, 5, stderr);
+
+*level0 decompiled*
+
+COMMAND: ./level0 423
+
+cat /home/user/level1
+
+*****flag******
