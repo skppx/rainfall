@@ -58,9 +58,9 @@ find address of nop sled
 ```
 
 building payload:
--
+\-
 buf1(20)
--
+\-
 padding(9) + nop sled address(4) + padding(7).  (total 20)
 
 final payload:
